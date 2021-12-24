@@ -1,4 +1,4 @@
-// import throttle from "lodash.throttle";
+ import throttle from "lodash.throttle";
 const FEEDBAKC_KEY = "feedback-form-state";
 
 const ref = {
@@ -12,7 +12,7 @@ const ref = {
 const feedbackForm = {};
 
 ref.form.addEventListener('submit', onSubmitForm);
-ref.form.addEventListener('input', onInputForm);
+ref.form.addEventListener('input', throttle(onInputForm,500));
 populationForm();
 function onSubmitForm(e) {
    e.preventDefault();
