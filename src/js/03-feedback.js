@@ -31,6 +31,8 @@ function populationForm() {
   if (saveData) {
     ref.input.value = saveData.email || '';
     ref.textarea.value = saveData.message || '';
+    feedbackForm.email = ref.input.value;
+    feedbackForm.message = ref.textarea.value;
   }
 }
 
