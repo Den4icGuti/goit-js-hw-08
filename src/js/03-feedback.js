@@ -7,32 +7,30 @@ const ref = {
   textarea:document.querySelector('.feedback-form textarea')
 }
 
-//  const { form, input, textarea } = ref;
-
 const feedbackForm = {};
 
 ref.form.addEventListener('submit', onSubmitForm);
-ref.form.addEventListener('input', throttle(onInputForm,500));
+ref.form.addEventListener('input', throttle(onInputForm, 500));
+
 populationForm();
 function onSubmitForm(e) {
    e.preventDefault();
    e.target.reset();
   localStorage.removeItem(FEEDBAKC_KEY);
+  console.log(feedbackForm)
  }
 
 function onInputForm(e) { 
   const value = e.target.value;
   feedbackForm[e.target.name] = value;
-  console.log(feedbackForm)
   localStorage.setItem(FEEDBAKC_KEY, JSON.stringify(feedbackForm));
 }
-
 
 function populationForm() { 
   const saveData = JSON.parse(localStorage.getItem(FEEDBAKC_KEY));
   if (saveData) {
-    ref.input.value = saveData.email;
-    ref.textarea.value = saveData.message;
+    ref.input.value = saveData.email || '';
+    ref.textarea.value = saveData.message || '';
   }
 }
 
